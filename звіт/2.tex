@@ -1,0 +1,99 @@
+\chapter{Алгоритм розв'язання}
+
+
+Зробимо крайові умови однорідними шляхом заміни $u(x) = w(x) + v(x)$, 
+де $v(x)$ будемо шукати з системи: 
+$$
+\begin{cases}
+    v(x) = rx + l \\
+    -k(a) v^{\prime}(a)+\alpha_1 v(a)=\mu_1 \\
+    k(b) v^{\prime}(b)+\alpha_2 v(b)=\mu_2
+\end{cases}
+$$
+
+Після підстановки:
+
+$$
+\begin{cases}
+    r(-k(a) +\alpha_1 a) + \alpha_2 l =\mu_1 \\
+    r(k(b) +\alpha_2 b) + \alpha_2 l =\mu_2
+\end{cases}
+$$
+
+
+За теоремою Крамера: 
+
+
+
+$$r = \frac{\begin{vmatrix}
+            \mu_1 & \alpha_1 \\
+            \mu_2 & \alpha_2
+        \end{vmatrix}}{
+        \begin{vmatrix}
+            (-k(a) +\alpha_1 a) & \alpha_1 \\
+            (k(b) +\alpha_2 b) & \alpha_2
+        \end{vmatrix}},
+l = -\frac{\begin{vmatrix}
+            (-k(a) +\alpha_1 a) & \mu_1 \\
+            (k(b) +\alpha_2 b) & \mu_2
+        \end{vmatrix}}{
+        \begin{vmatrix}
+            (-k(a) +\alpha_1 a) & \alpha_1 \\
+            (k(b) +\alpha_2 b) & \alpha_2 
+        \end{vmatrix}}
+$$
+
+\pagebreak
+Таким чином 
+
+
+$$
+\begin{cases}
+    r = \frac{\mu_1\alpha_2 - \mu_2\alpha_1}{ -k(a)\alpha_2 + \alpha_1\alpha_2a - \alpha_1k(b) - \alpha_1\alpha_2b}\\ 
+    l = \frac{\mu_2k(a) - \mu_2\alpha_1a + \mu_1k(b) +\mu_1\alpha_2b}{-k(a)\alpha_2 + \alpha_1\alpha_2a - \alpha_1k(b) - \alpha_1\alpha_2b}
+\end{cases}
+$$
+
+
+Підставимо отриману $v(x)$ у головне рівняння:
+$$-(k(x) w^{\prime})^{\prime}+p(x) w^{\prime}+q(x) w - rk'(x) + rp(x) + q(x)rx + q(x)l = f(x)$$
+$$-(k(x) w^{\prime})^{\prime}+p(x) w^{\prime}+q(x) w = rk'(x) - rp(x) - q(x)rx - q(x)l + f(x) = f_1(x)$$
+
+
+Нова задача з однорідними умовами:
+
+
+$$-(k(x) w^{\prime})^{\prime}+p(x) w^{\prime}+q(x) w=f_1(x), a<x<b,$$ 
+$$-k(a) w^{\prime}(a)+\alpha_1 w(a)=0,$$
+$$ k(b) w^{\prime}(b)+\alpha_2 w(b)=0,$$
+
+
+Знаходимо базисні функції $\varphi_1, \varphi_2, ... \varphi_n$ такі, що виконують граничні умови.
+
+
+$$
+\begin{cases}
+    \varphi_1 = (x - a)^2 (x - C) \\ 
+    \varphi_2 = (b - x)^2 (x - D) \\
+    \varphi_i = (x - a)^2 (b - x)^{i-1}, i \geq 3 
+\end{cases} 
+$$
+
+
+Тоді наша функція буде знаходитись у вигляді $w(x) = \sum\limits_{i=1}^{n} c_i \varphi_i $
+\pagebreak
+
+Для методу Бубнова-Гальоркіна значення коефіцієнтів $c_i$ можна розрахувати із СЛАР
+$$\sum_{i=1}^{n} c_i (A\varphi_i, \varphi_\gamma) = (f, \varphi_\gamma), \gamma = 1, ... n$$
+
+
+Для методу найменших квадратів 
+
+
+$$ \sum_{i=1}^{n} c_i (A\varphi_i, A\varphi_\gamma) = (f, A\varphi_\gamma), \gamma = 1...n $$
+
+
+Кінцеву похибку обчислимо за формулою:
+
+
+$$\varepsilon = \| u - u_n \| = \sqrt{\frac{1}{b-a} \int_{a}^{b} (u - u_n)^2dx}$$
