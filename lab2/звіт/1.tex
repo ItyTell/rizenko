@@ -1,0 +1,118 @@
+\chapter{Постановка задачі}
+
+Методи побудови різницевих схем
+
+Інтегро-інтерполяційний метод.
+
+Розглянемо наступну граничну задачу:
+$$
+\left\{\begin{array}{l}
+-\left(k u^{\prime}\right)^{\prime}+q u=f, 0<x<1, \\
+-k u^{\prime}+\alpha_1 u=\mu_1, \quad x=0, \\
+k u^{\prime}+\alpha_2 u=\mu_2, \quad x=1,
+\end{array}\right.
+$$
+
+де $k=k(x) \geq c_0>0, q=q(x) \geq 0, \quad k(x) \in Q^1[a, b], q(x), f(x) \in Q[a, b]$.
+Побудуємо сітку $\bar{\omega}_h=\left\{x_i=i h, h=1 / N, i=\overline{0, N}\right\}$ та проінтегруємо (1) по відрізку $\left[x_{i-1 / 2}, x_{i+1 / 2}\right]$, отримаємо :
+$$
+w_{i+1 / 2}-w_{i-1 / 2}+\int_{x_{i-1 / 2}}^{x_{i+1 / 2}}(q u-f) d x=0,
+$$
+
+де $w_i=-k\left(x_i\right) \frac{d u}{d x}\left(x_i\right)$ - величина потоку, який проходить через точку $x_i$.
+
+Розглянемо
+$$
+\int_{x_{i-1 / 2}}^{x_{i+1 / 2}} q(x) u(x) d x=u(\xi) \int_{x_{i-1 / 2}}^{x_{i+1 / 2}} q(x) d x \approx u_i \int_{x_{i-1 / 2}}^{x_{i+1 / 2}} q(x) d x=h d_i u_i,
+$$
+
+де $\xi \in[a, b]$,
+$$
+d_i=\frac{1}{h} \int_{x_{i-1 / 2}}^{x_{i+1}} q(x) d x
+$$
+
+Аналогічно
+$$
+\int_{x_{i-1 / 2}}^{x_{i+1}} f(x) d x=\varphi_i h,
+$$
+
+де
+$$
+\varphi_i=\frac{1}{h} \int_{x_{i-1 / 2}}^{x_{i+1 / 2}} f(x) d x .
+$$
+
+Проінтегруємо по відрізку $\left[x_{i-1}, x_i\right]$ вираз $u^{\prime} =-\frac{w(x)}{k(x)}$. Отримаємо
+$$
+u_i-u_{i-1}=-\int_{x_{i-1}}^{x_i} \frac{w(x)}{k(x)} d x \approx-w_{i-1 / 2} \int_{x_{i-1}}^{x_i} \frac{1}{k(x)} d x,
+$$
+
+або
+$$
+w_{i-1 / 2} \approx-a_i u_{\bar{x}, i},
+$$
+
+де
+
+
+$$
+a_i=\left(\frac{1}{h} \int_{x_{i-1}}^{x_i} \frac{1}{k(x)} d x\right)^{-1}
+$$
+
+Враховуючи також вираз
+$$
+w_{i+1 / 2} \approx-a_{i+1} u_{\overline{x}, i+1}
+$$
+отримаємо однорідну різницеву задачу
+$$
+-\left(a y_{\bar{x}}\right)_{x, i}+d_i y_i=\varphi_i, i=\overline{1, N-1}
+$$
+
+Проінтегруємо співвідношення (1) по відрізку $\left[0, x_{1 / 2}\right]$ :
+$$
+w_{1 / 2}-w_0+\int_0^{x_1 / 2}(q u-f) d x=0 .
+$$
+$$
+w_0=\mu_1-\alpha_1 u_0,
+$$
+
+а при $i=1$
+$$
+w_{1 / 2} \approx-a_1 u_{x, 0} .
+$$
+
+Скористаємося також наближеннями
+$$
+\int_0^x \frac{1}{2} q u d x \approx u_0 \int_0^x \frac{1}{2} q(x) d x=\frac{h}{2} u_0 d_0,
+$$
+
+де
+
+
+$$
+d_0=\frac{2}{h} \int_0^{x_{1 / 2}} q(x) d x,
+$$
+
+та
+$$
+\int_0^{x_{1 / 2}} f(x) d x=\frac{h}{2} \varphi_0,
+$$
+
+де
+$$
+\varphi_0=\frac{2}{h} \int_0^{x_{1 / 2}} f(x) d x
+$$
+
+отримуємо різницеву апроксимацію граничних умов :
+$$
+-a_1 y_{x, 0}+\alpha_1 y_0-\mu_1+\frac{h}{2} d_0 y_0-\frac{h}{2} \varphi_0=0,
+$$
+
+або
+$$
+-a_1 y_{x, 0}+\overline{\alpha_1} y_0=\overline{\mu_1},
+$$
+
+де
+$$
+\overline{\alpha_1}=\alpha_1+\frac{h}{2} d_0, \overline{\mu_1}=\mu_1+\frac{h}{2} \varphi_0 .
+$$
